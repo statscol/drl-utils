@@ -50,7 +50,7 @@ class PreprocessFrame(gym.ObservationWrapper):
         self.observation_space=gym.spaces.Box(low=0.0,high=1.0,shape=self.shape,dtype=np.float32)
     
     def observation(self,obs):
-        new_frame=cv2.cvtColor(obs,cv2.COLOR_GRB2GRAY)
+        new_frame=cv2.cvtColor(obs,cv2.COLOR_RGB2GRAY)
         resized_screen=cv2.resize(new_frame,self.shape[1:],interpolation=cv2.INTER_AREA)
         new_obs=np.array(resized_screen,dtype=np.uint8).reshape(self.shape) / 255.0 ##gray scale
         return new_obs
